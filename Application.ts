@@ -30,7 +30,7 @@ export class Application<T> {
 							else 
 								console.log(`${ name } help ${ module.name }\tGet help on ${ module.name }.\n`)
 						} else
-							console.log(`To get started, set a server.\nThe server with the name default is used by default when no --server flag is used.\n\n ${ name } help <module>\tGet help on module\n\nModules:\n${ [...new Set(Object.values(this.modules))].map(m => `${ m?.name.padEnd(16, " ")}${ m?.description.padStart(6, " ")}`).join("\n") }\n`)
+							console.log(`To get started, set a server.\nThe server with the name default is used by default when no --server flag is used.\n\nUsage for flags\n-s <server name>\tUses registered <server name>\n-u <url>\tUses <url>\n\n ${ name } help <module>\tGet help on module\n\nModules:\n${ [...new Set(Object.values(this.modules))].map(m => `${ m?.name.padEnd(16, " ")}${ m?.description.padStart(6, " ")}`).join("\n") }\n`)
 						return true
 					},
 				},

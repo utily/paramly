@@ -2,7 +2,7 @@ import { Module } from "./Module"
 
 export class Application<T> {
     private readonly modules: { [name: string]: Module<T> } = {}
-    constructor(label: string, name: string, version: string, private readonly flags: { [name: string]: number }, private readonly createState: (flags: { [name: string]: number }) => Promise<T | undefined>) {
+    constructor(label: string, name: string, version: string, private readonly flags: { [name: string]: number }, private readonly createState: (flags: { [name: string]: string[] }) => Promise<T | undefined>) {
 		this.register({
 			name: "help",
 			description: "Shows help.",
@@ -45,7 +45,7 @@ export class Application<T> {
 					description: "Show version.",
 					examples: [],
 					execute: async (connection, argument, _) => {
-						console.log(`${ label }\n version: ${ version } + \n`)
+						console.log(`${ label }\nversion: ${ version }\n`)
 						return true
 					},
 				}
@@ -54,17 +54,17 @@ export class Application<T> {
     }
 	async execute(argument: string[]): Promise<boolean> {
 		let a: string[] = []
-		const f: { [flag: string]: string[] } = {}
+		const flags: { [flag: string]: string[] } = {}
 		let item: string | undefined
 		while (item = argument.shift()) {
 			if (item.startsWith("-")) {
 				while (item.startsWith("-"))
 					item = item.slice(1)
-				f[item] = argument.splice(0, this.flags[item])
+				flags[item] = argument.splice(0, this.flags[item])
 			} else
 				a.push(item)
 		}
-		const state = await this.createState(this.flags)
+		const state = await this.createState(flags)
 		const module = this.modules[a.shift() ?? "?"] ?? this.modules["?"]
 		const commandName = a.shift()
 		let command = module.commands[commandName ?? "_"]
@@ -72,7 +72,7 @@ export class Application<T> {
 			command = module.commands._
 			a = commandName ? [commandName, ...a] : a
 		}
-		return await command?.execute(state, a, f) || false
+		return await command?.execute(state, a, flags) || false
 	}
 	async run(argument: string[]): Promise<boolean> {
 		const result = await this.execute(argument.slice(2))

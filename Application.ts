@@ -20,7 +20,7 @@ export class Application<T> {
 						const command = module && argument.length > 1 && module.commands[argument[1]]
 						console.log(`\n${ label }\n\nUsage`)
 						if (command && module)
-							console.log(`${ name } ${ module.name } ${ command.name } <command>\n\n${ command.description }\n\nExamples:\n${ command.examples.map(example => `${ example.join("\t") }`).join("\n") }\n`)
+							console.log(`${ name } ${ module.name } ${ command.name } <command>\n\n${ command.description }\n\nExamples:\n${ command.examples.map(example => `${ example.join("\t") }`).join("\n") }\n\nUsage for flags\n-s <server name>\tUses registered <server name>\n-u <url>\t\tUses <url>`)
 						else if (module) {
 							if (module.commands._)
 								console.log(`${ name } ${ module.name }\t${ module.commands._.description }`)

@@ -3,5 +3,5 @@ export interface Flag {
 	long: string
 	arguments?: number
 	description: string
-	example: string[]
+	usage: string
 }

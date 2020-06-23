@@ -25,7 +25,7 @@ export class Application<T> {
 					execute: async (state, argument, _) => {
 						const module = argument.length > 0 && this.modules[argument[0]]
 						const command = module && argument.length > 1 && module.commands[argument[1]]
-						const flag = 
+						const flag =
 						console.log(`\n${ label }\n\nUsage`)
 						if (command && module)
 							console.log(`${ name } ${ module.name } ${ command.name } <command>\n\n${ command.description }\n\nExamples:\n${ command.examples.map(example => `${ example.join("\t") }`).join("\n") }\n`)
@@ -34,7 +34,7 @@ export class Application<T> {
 								console.log(`${ name } ${ module.name }\t${ module.commands._.description }`)
 							const commands = [...new Set(Object.values(module.commands))].filter(c => c?.name != "_")
 							if (commands.length > 0)
-								console.log(`${ name } ${ module.name } <command>\t\tRun command\npayfunc help ${ module.name } <command>\tGet help on command\n\nCommands:\n${ commands.map(c => `${ c?.name.padEnd(10, " ") }\t${ c?.description }`).join("\n") }\n\n${ flags.map(f => `${ f?.long.padEnd(10, " ") }\t${ f?.description }\t${ f?.example }`).join("\n") }`)
+								console.log(`${ name } ${ module.name } <command>\t\tRun command\npayfunc help ${ module.name } <command>\tGet help on command\n\nCommands:\n${ commands.map(c => `${ c?.name.padEnd(10, " ") }\t${ c?.description }`).join("\n") }\n\nFlags:\n${ flags.map(f => `${ f?.example }\t${ f?.description }`).join("\n") }`)
 							else
 								console.log(`${ name } help ${ module.name }\tGet help on ${ module.name }.\n`)
 						} else

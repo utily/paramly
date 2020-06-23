@@ -1,8 +1,15 @@
 import { Module } from "./Module"
+import { Flag } from "./Flag"
 
 export class Application<T> {
-    private readonly modules: { [name: string]: Module<T> } = {}
-    constructor(label: string, name: string, version: string, private readonly flags: { [name: string]: number }, private readonly createState: (flags: { [name: string]: string[] }) => Promise<T | undefined>) {
+	private readonly modules: { [name: string]: Module<T> } = {}
+	private readonly flags: { [name: string]: number } = {}
+	constructor(label: string, name: string, version: string, flags: Flag[], private readonly createState: (flags: { [name: string]: string[] }) => Promise<T | undefined>) {
+		for (const flag of flags) {
+			this.flags[flag.long] = flag.arguments ?? 0
+			if (flag.short)
+				this.flags[flag.short] = flag.arguments ?? 0
+		}
 		this.register({
 			name: "help",
 			description: "Shows help.",
@@ -26,8 +33,8 @@ export class Application<T> {
 								console.log(`${ name } ${ module.name }\t${ module.commands._.description }`)
 							const commands = [...new Set(Object.values(module.commands))].filter(c => c?.name != "_")
 							if (commands.length > 0)
-								console.log(`${ name } ${ module.name } <command>\t\tRun command\npayfunc help ${ module.name } <command>\tGet help on command\n\nCommands:\n${ commands.map(c => `${ c?.name.padEnd(10, " ") }\t${ c?.description }`).join("\n") }\n`)
-							else 
+								console.log(`${ name } ${ module.name } <command>\t\tRun command\npayfunc help ${ module.name } <command>\tGet help on command\n\nCommands:\n${ commands.map(c => `${ c?.name.padEnd(10, " ") }\t${ c?.description }`).join("\n") }\n\nFlags:\n${ flags.map(f => `--${ f?.long } ${ f?.usage.padEnd(20, " ") }\t${ f?.description }`).join("\n") }`)
+							else
 								console.log(`${ name } help ${ module.name }\tGet help on ${ module.name }.\n`)
 						} else
 							console.log(`To get started, set a server.\nThe server with the name default is used by default when no --server flag is used.\n\n ${ name } help <module>\tGet help on module\n\nModules:\n${ [...new Set(Object.values(this.modules))].map(m => `${ m?.name.padEnd(16, " ")}${ m?.description.padStart(6, " ")}`).join("\n") }\n`)
@@ -51,7 +58,7 @@ export class Application<T> {
 				}
 			}
 		}, "version", "v")
-    }
+	}
 	async execute(argument: string[]): Promise<boolean> {
 		let a: string[] = []
 		const flags: { [flag: string]: string[] } = {}

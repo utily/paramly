@@ -5,8 +5,8 @@ describe("paramly", () => {
 		short: "t",
 		long: "test",
 		arguments: 1,
-		description: "test diffrent Tests than default.",
-		usage: "--test <test name>",
+		description: "test description.",
+		usage: "<test name>",
 		}], async f => f)
 	it("version", async () => {
 		let output = ""

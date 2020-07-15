@@ -83,7 +83,7 @@ export class Application<T> {
 	}
 	async run(argument: string[]): Promise<boolean> {
 		const result = await this.execute(argument.slice(2))
-		console.log(result ? "succeeded" : "failed")
+		console.error(result ? "succeeded" : "failed")
 		return result
 	}
 	register(module: Module<T>, ...names: string[]): void {

@@ -33,7 +33,7 @@ export class Application<T> {
 								console.log(`${ name } ${ module.name }\t${ module.commands._.description }`)
 							const commands = [...new Set(Object.values(module.commands))].filter(c => c?.name != "_")
 							if (commands.length > 0)
-								console.log(`${ name } ${ module.name } <command>\t\tRun command\npayfunc help ${ module.name } <command>\tGet help on command\n\nCommands:\n${ commands.map(c => `${ c?.name.padEnd(10, " ") }\t${ c?.description }`).join("\n") }\n\nFlags:\n${ flags.map(f => `--${ f?.long } ${ f?.usage.padEnd(20, " ") }\t${ f?.description }`).join("\n") }`)
+								console.log(`${ name } ${ module.name } <command>\t\tRun command\n${ name } help ${ module.name } <command>\tGet help on command\n\nCommands:\n${ commands.map(c => `${ c?.name.padEnd(10, " ") }\t${ c?.description }`).join("\n") }\n\nFlags:\n${ flags.map(f => `--${ f?.long } ${ f?.usage.padEnd(20, " ") }\t${ f?.description }`).join("\n") }`)
 							else
 								console.log(`${ name } help ${ module.name }\tGet help on ${ module.name }.\n`)
 						} else

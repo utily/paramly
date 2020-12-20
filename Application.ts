@@ -1,5 +1,5 @@
-import { Module } from "./Module"
 import { Flag } from "./Flag"
+import { Module } from "./Module"
 
 export class Application<T> {
 	private readonly modules: { [name: string]: Module<T> } = {}

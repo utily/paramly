@@ -6,7 +6,7 @@ on:
       - "release-*"
 jobs:
   publish:
-    name: "Publish from master-0.0"
+    name: "Publish from master"
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:

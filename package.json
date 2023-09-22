@@ -1,6 +1,6 @@
 {
 	"name": "paramly",
-	"version": "0.0.16",
+	"version": "0.0.17",
 	"description": "Library CLI.",
 	"author": "PayFunc",
 	"license": "MIT",
@@ -51,18 +51,18 @@
 	},
 	"devDependencies": {
 		"@types/jest": "^28",
-    "@types/node": "^16",
-    "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "@typescript-eslint/parser": "^5.23.0",
-	  "eslint": "^8.15.0",
-    "eslint-plugin-prettierx": "github:utily/eslint-plugin-prettierx#utily-20230626",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
-    "jest": "^28",
-    "prettierx": "github:utily/prettierx#utily-20230626",
-    "ts-jest": "^28",
-    "typescript": "^4.7.3"
+		"@types/node": "^16",
+		"@typescript-eslint/eslint-plugin": "^5.23.0",
+		"@typescript-eslint/parser": "^5.23.0",
+		"eslint": "^8.15.0",
+		"eslint-plugin-prettierx": "github:utily/eslint-plugin-prettierx#utily-20230626",
+		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"jest": "^28",
+		"prettierx": "github:utily/prettierx#utily-20230626",
+		"ts-jest": "^28",
+		"typescript": "^4.7.3"
 	},
-		"overrides": {
+	"overrides": {
 		"semver": "^7.5.3",
 		"optionator": "^0.9.3"
 	}

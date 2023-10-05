@@ -1,7 +1,10 @@
 {
 	"compilerOptions": {
-		"target": "ES2019",
-		"module": "ES2015",
+		"target": "es2019",
+		"module": "es2015",
+		"allowJs": true,
+		"allowSyntheticDefaultImports":true,
+		"esModuleInterop": true,
 		"noImplicitAny": true,
 		"removeComments": true,
 		"preserveConstEnums": true,
@@ -12,8 +15,19 @@
 		"outDir": "dist",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"esModuleInterop": true
+		"lib": ["es2019"],
+		"types": ["node","jest"],
+		"paths": { 
+			"*": ["types/*"] 
+		}
+
 	},
+	  "include": [
+    "*.ts",
+    "**/*.ts"
+  ],
+  "exclude": ["*.spec.ts", "**/*.spec.ts", "node_modules/", "dist/"],
+	"files": ["index.ts"],
 	"typeAcquisition": {
 		"enable": true
 	}

@@ -3,9 +3,20 @@
 	"compilerOptions": {
 		"declaration": true,
 		"sourceMap": true,
-		"outDir": "dist"
+		"sourceRoot": "../",
+		"outDir": "dist",
+		"baseUrl": ".",
+		"paths": {
+			"*": [
+				"types/*"
+			]
+		},
+		"allowSyntheticDefaultImports": true,
+		"types": [
+			"node"
+		]
 	},
 	"files": [
-		"index.ts"
+		"index.ts",
 	]
 }

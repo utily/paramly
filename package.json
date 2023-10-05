@@ -18,6 +18,7 @@
 	"git": {
 		"tagName": "v${version}"
 	},
+	"type": "module",
 	"github": {
 		"release": true
 	},

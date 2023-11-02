@@ -1,4 +1,15 @@
 {
+	"files.exclude": {
+		".*": true,
+		".sh": true,
+		"*.json": true,
+		"dist": true,
+		"README.md": true,
+		"LICENSE": true,
+		"tsconfig.*": true,
+		"node_modules": true,
+		"*.code-workspace": true
+	},
 	"files.insertFinalNewline": true,
 	"editor.tabSize": 2,
 	"editor.detectIndentation": false,

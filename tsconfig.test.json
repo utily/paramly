@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "es2019",
-		"module": "es2015",
+		"target": "es2020",
+		"module": "es2020",
 		"allowJs": true,
-		"allowSyntheticDefaultImports":true,
+		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"noImplicitAny": true,
 		"removeComments": true,
@@ -12,22 +12,35 @@
 		"noImplicitThis": true,
 		"strictNullChecks": true,
 		"sourceMap": true,
-		"outDir": "dist",
+		"outDir": "dist/mjs",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"lib": ["es2019"],
-		"types": ["node","jest"],
-		"paths": { 
-			"*": ["types/*"] 
+		"lib": [
+			"es2020"
+		],
+		"types": [
+			"node",
+			"jest"
+		],
+		"paths": {
+			"*": [
+				"types/*"
+			]
 		}
-
 	},
-	  "include": [
-    "*.ts",
-    "**/*.ts"
-  ],
-  "exclude": ["*.spec.ts", "**/*.spec.ts", "node_modules/", "dist/"],
-	"files": ["index.ts"],
+	"include": [
+		"*.ts",
+		"**/*.ts"
+	],
+	"exclude": [
+		"*.spec.ts",
+		"**/*.spec.ts",
+		"node_modules/",
+		"dist/"
+	],
+	"files": [
+		"index.ts"
+	],
 	"typeAcquisition": {
 		"enable": true
 	}

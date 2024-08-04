@@ -2,16 +2,16 @@
 	"name": "paramly",
 	"version": "0.0.20",
 	"description": "Library CLI.",
-	"author": "PayFunc",
+	"author": "Utily",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/payfunc/paramly"
+		"url": "git+https://github.com/utily/paramly"
 	},
 	"bugs": {
-		"url": "https://github.com/payfunc/paramly/issues"
+		"url": "https://github.com/utly/paramly/issues"
 	},
-	"homepage": "https://github.com/func/paramly#readme",
+	"homepage": "https://github.com/utily/paramly",
 	"private": false,
 	"main": "dist/cjs/index.js",
 	"module": "dist/mjs/index.js",

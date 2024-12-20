@@ -1,13 +1,5 @@
 .vscode
-**/*.ts
-!**/*.d.ts
 **/*.spec.js
 **/*.spec.ts
 coverage
 .env
-.git
-.editorconfig
-.vscode
-.circleci
-tsconfig.json
-tsconfig.test.json

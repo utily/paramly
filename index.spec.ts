@@ -18,13 +18,13 @@ describe("paramly", () => {
 	)
 	it("version", async () => {
 		let output = ""
-		console.log = jest.fn(inputs => (output += inputs))
+		console.log = vi.fn(inputs => (output += inputs))
 		expect(await application.execute(["version"])).toEqual(true)
 		expect(output).toBe("Test\nversion: 13.37\n")
 	})
 	it("help", async () => {
 		let output = ""
-		console.log = jest.fn(inputs => (output += inputs))
+		console.log = vi.fn(inputs => (output += inputs))
 		expect(await application.execute(["help"])).toEqual(true)
 		expect(output).toBe(`
 Test

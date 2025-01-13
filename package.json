@@ -1,6 +1,6 @@
 {
 	"name": "paramly",
-	"version": "0.0.22",
+	"version": "0.0.23",
 	"description": "Library CLI.",
 	"author": "Library for parsing CLI arguments.",
 	"license": "MIT",

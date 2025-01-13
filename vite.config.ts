@@ -8,7 +8,15 @@ export default defineConfig({
 		},
 		coverage: {
 			reporter: ["text", "json", "html"],
-			provider: "istanbul",
+			enabled: true,
+			all: true,
+			cleanOnRerun: true,
+			thresholds: {
+				statements: 100,
+				branches: 97,
+				functions: 100,
+				lines: 100,
+			},
 		},
 		globals: true,
 		include: ["**/*.spec.[tj]s"],
@@ -17,7 +25,7 @@ export default defineConfig({
 		exclude: ["node_modules", "dist"],
 		server: {
 			deps: {
-				inline: [],
+				inline: ["isly"],
 			},
 		},
 	},

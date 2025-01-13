@@ -1,4 +1,4 @@
-import * as paramly from "./index"
+import { paramly } from "./index"
 
 describe("paramly", () => {
 	const application = new paramly.Application(
@@ -7,36 +7,60 @@ describe("paramly", () => {
 		"13.37",
 		[
 			{
-				short: "t",
-				long: "test",
+				short: "s",
+				long: "server",
 				arguments: 1,
-				description: "test description.",
-				usage: "<test name>",
+				description: "Base URL of server to connect to.",
+				usage: "<url>",
+			},
+			{
+				short: "v",
+				long: "verbose",
+				description: "More verbose output.",
+				usage: "",
 			},
 		],
 		async f => f
 	)
-	it("version", async () => {
+	application.register(
+		{
+			name: "output",
+			description: "Show argument in output.",
+			commands: {
+				list: {
+					name: "list",
+					description: "List output.",
+					examples: [
+						["all", "List all output."],
+						["", "List some output."],
+					],
+					async execute(state, argument, flags) {
+						console.log("output", argument, flags, state)
+						return false
+					},
+				},
+			},
+		},
+		"output",
+		"o"
+	)
+	it.each([
+		"output all --server https://example.com",
+		"--verbose",
+		"version",
+		"unknown",
+		"unknown 42",
+		"help",
+		"help output",
+		"help output list",
+		"help output list --server",
+		"help --server",
+		"help version",
+		"help unknown",
+	])("%s", async argument => {
 		let output = ""
 		console.log = vi.fn(inputs => (output += inputs))
-		expect(await application.execute(["version"])).toEqual(true)
-		expect(output).toBe("Test\nversion: 13.37\n")
-	})
-	it("help", async () => {
-		let output = ""
-		console.log = vi.fn(inputs => (output += inputs))
-		expect(await application.execute(["help"])).toEqual(true)
-		expect(output).toBe(`
-Test
-
-UsageTo get started, set a server.
-The server with the name default is used by default when no --server flag is used.
-
- test help <module>	Get help on module
-
-Modules:
-help            Shows help.
-version         Shows version.
-`)
+		expect(await application.run(["node", "test", ...argument.split(" ")])).toEqual(argument.slice(0, 6) != "output")
+		expect(output).toMatchSnapshot()
 	})
 })

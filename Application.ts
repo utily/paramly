@@ -9,7 +9,7 @@ export class Application<T> {
 		name: string,
 		version: string,
 		flags: Flag[],
-		private readonly createState: (flags: { [name: string]: string[] }) => Promise<T | undefined>
+		private readonly createState: (flags: Partial<Record<string, string[]>>) => Promise<T | undefined>
 	) {
 		for (const flag of flags) {
 			this.flags[flag.long] = flag.arguments ?? 0
@@ -30,9 +30,9 @@ export class Application<T> {
 							["<module> <command>", "Shows help for specific command."],
 						],
 						execute: async (state, argument, _) => {
-							const module = argument.length > 0 && this.modules[argument[0]]
-							const command = module && argument.length > 1 && module.commands[argument[1]]
-							console.log(`\n${label}\n\nUsage`)
+							const module = argument[0] && this.modules[argument[0]]
+							const command = module && argument[1] && module.commands[argument[1]]
+							console.log(`\n${label}\n\nUsage: `)
 							if (command && module)
 								console.log(
 									`${name} ${module.name} ${command.name} <command>\n\n${
@@ -107,9 +107,9 @@ export class Application<T> {
 		const state = await this.createState(flags)
 		const module = this.modules[a.shift() ?? "?"] ?? this.modules["?"]
 		const commandName = a.shift()
-		let command = module.commands[commandName ?? "_"]
+		let command = module?.commands[commandName ?? "_"]
 		if (!command) {
-			command = module.commands._
+			command = module?.commands._
 			a = commandName ? [commandName, ...a] : a
 		}
 		return (await command?.execute(state, a, flags)) || false
@@ -123,3 +123,4 @@ export class Application<T> {
 		names.forEach(name => (this.modules[name] = module))
 	}
 }
+export namespace Application {}

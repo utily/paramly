@@ -57,6 +57,7 @@ describe("paramly", () => {
 		"help --server",
 		"help version",
 		"help unknown",
+		"",
 	])("%s", async argument => {
 		let output = ""
 		console.log = vi.fn(inputs => (output += inputs))

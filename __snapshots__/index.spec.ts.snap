@@ -1,5 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`paramly >  1`] = `
+"
+Test
+
+Usage: To get started, set a server.
+The server with the name default is used by default when no --server flag is used.
+
+ test help <module>	Get help on module
+
+Modules:
+help            Shows help.
+version         Shows version.
+output          Show argument in output.
+"
+`;
+
 exports[`paramly > --verbose 1`] = `
 "
 Test
